@@ -22,10 +22,10 @@ func TestFee(t *testing.T) {
 				"error": null,
 				"data": {
 					"fee_per_address": {
-						"btc": 0.000123,
-						"bch": 0.000456,
-						"ltc": 0.000789,
-						"eth": 0.000321
+						"btc": "0.000123",
+						"bch": "0.000456",
+						"ltc": "0.000789",
+						"eth": "0.000321"
 					}
 				}
 			}`,
@@ -36,10 +36,10 @@ func TestFee(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, resp)
 
-	assert.Equal(t, 0.000123, resp.BTC)
-	assert.Equal(t, 0.000456, resp.BCH)
-	assert.Equal(t, 0.000789, resp.LTC)
-	assert.Equal(t, 0.000321, resp.ETH)
+	assert.Equal(t, "0.000123", resp.BTC)
+	assert.Equal(t, "0.000456", resp.BCH)
+	assert.Equal(t, "0.000789", resp.LTC)
+	assert.Equal(t, "0.000321", resp.ETH)
 
 	t.Logf("%#v\n", resp)
 }

@@ -21,10 +21,10 @@ type FeeResource struct {
 
 // Fee represents a BestMixer fee
 type Fee struct {
-	BTC float64 `json:"btc"`
-	BCH float64 `json:"bch"`
-	LTC float64 `json:"ltc"`
-	ETH float64 `json:"eth"`
+	BTC string `json:"btc"`
+	BCH string `json:"bch"`
+	LTC string `json:"ltc"`
+	ETH string `json:"eth"`
 }
 
 type feeRequest struct {
