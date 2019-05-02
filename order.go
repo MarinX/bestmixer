@@ -1,6 +1,9 @@
 package bestmixer
 
-import "fmt"
+import (
+	"encoding/base64"
+	"fmt"
+)
 
 // OrderService is an interface for interfacing with the order endpoints
 // of the BestMixer API.
@@ -32,6 +35,15 @@ type Order struct {
 	ExactlyAmount     float64 `json:"exactly_amount,omitempty"`
 	BmCode            string  `json:"bm_code"`
 	LetterOfGuarantee string  `json:"letter_of_guarantee"`
+}
+
+// DecodeLOG decodes letter of guarantee from base64
+func (o *Order) DecodeLOG() (string, error) {
+	if len(o.LetterOfGuarantee) <= 0 {
+		return "", fmt.Errorf("letter of guarantee is empty")
+	}
+	resp, err := base64.StdEncoding.DecodeString(o.LetterOfGuarantee)
+	return string(resp), err
 }
 
 // OrderInfo represents the response from order/info api
