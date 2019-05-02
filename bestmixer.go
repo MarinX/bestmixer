@@ -45,8 +45,21 @@ type Client struct {
 
 // Response from API, general usage for checking the error and parsing data
 type Response struct {
-	Error error       `json:"error"`
-	Data  interface{} `json:"data"`
+	Error string       `json:"error"`
+	Data  ResponseData `json:"data"`
+}
+
+// ResponseData is our type from response API
+type ResponseData struct {
+	Data interface{}
+}
+
+// UnmarshalJSON is our custom data unmarshal
+func (r ResponseData) UnmarshalJSON(data []byte) error {
+	if string(data) == "[]" {
+		return nil
+	}
+	return json.Unmarshal(data, r.Data)
 }
 
 // New creates a new BestMixer client with api key
@@ -108,14 +121,16 @@ func (c *Client) CreateAndDo(method, path string, data, resource interface{}) er
 	}
 
 	resp := Response{
-		Data: resource,
+		Data: ResponseData{
+			Data: resource,
+		},
 	}
 	err = c.Do(req, &resp)
 	if err != nil {
 		return err
 	}
-	if resp.Error != nil {
-		return resp.Error
+	if len(resp.Error) > 0 {
+		return fmt.Errorf("%s", resp.Error)
 	}
 	return nil
 }
