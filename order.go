@@ -53,10 +53,10 @@ type OrderInfo struct {
 	Received      int      `json:"received"`
 	Coin          Coin     `json:"coin"`
 	Fixed         int      `json:"fixed"`
-	MinAmount     float64  `json:"min_amount"`
-	MaxAmount     float64  `json:"max_amount"`
-	ServiceFee    float64  `json:"service_fee"`
-	FeePerAddress float64  `json:"fee_per_address"`
+	MinAmount     string   `json:"min_amount"`
+	MaxAmount     string   `json:"max_amount"`
+	ServiceFee    string   `json:"service_fee"`
+	FeePerAddress string   `json:"fee_per_address"`
 	Output        []Output `json:"output"`
 }
 
