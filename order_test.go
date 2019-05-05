@@ -130,10 +130,10 @@ func TestInfoOrder(t *testing.T) {
 					"received": 0,
 					"coin": "btc",
 					"fixed": 0,
-					"min_amount": 0.005,
-					"max_amount": 123.456,
-					"service_fee": 0.001,
-					"fee_per_address": 0.0000001,
+					"min_amount": "0.005",
+					"max_amount": "123.456",
+					"service_fee": "0.001",
+					"fee_per_address": "0.0000001",
 					"output": [
 						{
 							"address": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
@@ -174,10 +174,10 @@ func TestInfoOrder(t *testing.T) {
 	assert.Equal(t, 0, resp.Received)
 	assert.Equal(t, "btc", resp.Coin.String())
 	assert.Equal(t, 0, resp.Fixed)
-	assert.Equal(t, 0.005, resp.MinAmount)
-	assert.Equal(t, 123.456, resp.MaxAmount)
-	assert.Equal(t, 0.001, resp.ServiceFee)
-	assert.Equal(t, 0.0000001, resp.FeePerAddress)
+	assert.Equal(t, "0.005", resp.MinAmount)
+	assert.Equal(t, "123.456", resp.MaxAmount)
+	assert.Equal(t, "0.001", resp.ServiceFee)
+	assert.Equal(t, "0.0000001", resp.FeePerAddress)
 	assert.Equal(t, 3, len(resp.Output))
 
 	t.Logf("%#v\n", resp)
